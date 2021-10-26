@@ -1,0 +1,64 @@
+<!--
+  一覧ページ
+  共通レイアウトをデコレートする。
+-->
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorate="~{layout/layout}">
+
+<head>
+  <meta charset="utf-8" th:remove="tag">
+</head>
+
+<body>
+  <div layout:fragment="content" class="container p-4">
+    <h4 class="mb-4">
+      <a th:href="@{/}" class="text-decoration-none text-body">
+        <i class="bi bi-emoji-smile"></i>
+        MyBatis Sample
+      </a>
+    </h4>
+
+    <table th:if="${page.totalPages > 0}" class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名前</th>
+          <th>E-Mail</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="teacher : ${page}" th:object="${teacher}" class="align-middle">
+          <td th:text="*{id}"></td>
+          <td th:text="*{userName}"></td>
+          <td th:text="*{email}"></td>
+          <td class="py-1 text-center">
+            <a th:href="@{/edit/{id}(id=*{id})}" class="btn btn-outline-primary">
+              <i class="bi bi-pencil-fill"></i>
+              編集
+            </a>
+            <a th:href="@{/delete/{id}(id=*{id})}" class="btn btn-outline-danger">
+              <i class="bi bi-trash-fill"></i>
+              削除
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row mt-4">
+      <div class="col-auto me-auto">
+        <a th:href="@{/add}" class="btn btn-outline-primary">
+          <i class="bi bi-plus-lg"></i>
+          新規追加
+        </a>
+      </div>
+      <!-- ページネーション -->
+      <div th:replace="~{fragments/pagination :: pagination}"></div>
+    </div>
+
+  </div>
+</body>
+
+</html>

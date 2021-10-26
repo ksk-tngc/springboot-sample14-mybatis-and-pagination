@@ -1,0 +1,29 @@
+<!--
+  共通レイアウト
+  Thymeleaf Layout Dialect でレイアウトを定義する
+-->
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+
+  <title>MyBatis App</title>
+</head>
+
+<body>
+  <!-- コンテンツの配置 -->
+  <div layout:fragment="content">
+  </div>
+
+  <!-- Bootstrap -->
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

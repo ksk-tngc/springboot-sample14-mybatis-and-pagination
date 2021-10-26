@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- TEACHERテーブルのマッパーXML -->
+<mapper namespace="com.example.mb.mapper.TeacherMapper">
+
+	<!-- 件数取得 -->
+	<select id="count" resultType="Long">
+		SELECT
+			COUNT(*)
+		FROM
+			teacher
+	</select>
+
+	<!--
+		id・・・Java側のメソッド名と一致させる
+		resultType・・・結果の型。コレクションの場合はジェネリクス（中に含まれるオブジェクトの型）を指定する
+	-->
+	<!-- 全レコード取得 -->
+	<select id="selectAll" resultType="Teacher">
+		SELECT
+			*
+		FROM
+			teacher
+	</select>
+
+	<!-- ID指定で取得 -->
+	<select id="selectByPrimaryKey" resultType="Teacher">
+		SELECT
+			*
+		FROM
+			teacher
+		WHERE
+			id	=	#{id}
+	</select>
+
+	<!-- 1レコード登録 -->
+	<insert id="insert">
+		INSERT INTO teacher
+		(
+			user_name
+		,	email
+		)
+		VALUES
+		(
+			#{userName}
+		,	#{email}
+		)
+	</insert>
+
+	<!-- ID指定で更新 -->
+	<update id="updateByPrimaryKey">
+		UPDATE
+			teacher
+		SET
+			user_name	=	#{userName}
+		,	email		=	#{email}
+		WHERE
+			id	=	#{id}
+	</update>
+
+	<!-- ID指定で削除 -->
+	<delete id="deleteByPrimaryKey">
+		DELETE FROM teacher
+		WHERE
+			id	=	#{id}
+	</delete>
+
+</mapper>
